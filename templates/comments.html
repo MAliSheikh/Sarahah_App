@@ -22,8 +22,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-
-
 </head>
 
 <body style="background-image: url('/static/img/hero-bg.png'); background-size: cover; background-position: center;">
@@ -51,7 +49,6 @@
             <div class="navbar-collapse collapse col-sm-12" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right"
                     style="display: inline-block; margin-top:-50px; font-size: 14px;">
-
                     {% if request.user.is_authenticated %}
                     <li><a href="/logout">Logout</a></li>
                     {% else %}
@@ -64,6 +61,7 @@
             </div>
         </div>
     </nav>
+
     <div class="container mt-5" style="box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);">
         <div class="d-flex justify-content-center row">
             {% for comment, replies in comments_with_replies %}
@@ -72,7 +70,8 @@
                     <div class="bg-white p-2">
                         <div class="mt-2" style="display: flex;">
                             <p id="comment_sno" style="font-size: 14px;">{{ comment.sno }} - </p>
-                            <p class="comment-text" style="font-size: 14px;  padding-right: 10px;">{{ comment.comment }}</p>
+                            <p class="comment-text" style="font-size: 14px;  padding-right: 10px;">{{ comment.comment }}
+                            </p>
                             <p class="comment-timestamp" style="font-size: 12px; color: gray;">
                                 {{ comment.timestamp|date:"F d, Y H:i A" }}
                             </p>
@@ -88,6 +87,10 @@
                                 data-bs-target="#replyBox{{ comment.sno }}" aria-expanded="false"
                                 aria-controls="replyBox{{ comment.sno }}">
                                 Reply
+                            </button>
+                            <button class="btn btn-primary btn-sn show-comment-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#commentDiv{{ comment.sno }}">
+                                Show Comments
                             </button>
                             <div class="collapse" id="replyBox{{ comment.sno }}">
                                 <div class="card card-body my-2">
@@ -109,22 +112,20 @@
                     </div>
                     <!-- Replies -->
                     <div class="ml-4">
-                        {% if replies %}
                         <div class="bg-white p-2">
-                            <div class="mt-2" style="display: flex;">
+                            <div class="mt-2" id="commentDiv{{ comment.sno }}" style="display: none;">
                                 <ul class="replies" style="list-style: none;">
                                     {% for reply in replies %}
                                     <li class="bg-light p-2 mt-2" style="display:flex;">
-                                        <p class="comment-text" style="font-size: 14px; padding-right: 10px;">{{ reply.reply_content }}  </p>
+                                        <p style="font-size: 14px; padding-right: 10px;">{{ owner_username }} : </p>
+                                        <p class="comment-text" style="font-size: 14px; padding-right: 10px;">
+                                            {{ reply.reply_content }}</p>
                                         <p class="comment-timestamp" style="font-size: 12px; color: gray;">
                                             {{ reply.timestamp|date:"F d, Y H:i A" }}
                                         </p>
                                     </li>
                                     {% endfor %}
                                 </ul>
-                                {% else %}
-                                <p>No replies for this comment.</p>
-                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -156,8 +157,23 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        const showCommentBtns = document.querySelectorAll('.show-comment-btn');
 
+        showCommentBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                const commentDiv = button.parentNode.parentNode.nextElementSibling.querySelector('.replies');
+                const isCommentVisible = commentDiv.style.display === 'block';
 
+                if (isCommentVisible) {
+                    commentDiv.style.display = 'none';
+                } else {
+                    commentDiv.style.display = 'block';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

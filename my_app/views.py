@@ -66,8 +66,8 @@ def comments(request, user_identifier, uuid):
             'comments_with_replies': comments_with_replies,
             'user_identifier': user_identifier,
             'uuid': uuid,
+            'owner_username': request.user.username, 
         })
-
 
 
 def reply(request, user_identifier, uuid):
