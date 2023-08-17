@@ -6,10 +6,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 import uuid  
-
+import requests
 # REMAINING WORK 
 # MESSAGES SEEN AND REPLY PAGE
 
+session = requests.Session()
 
 def dashboard(request):
     return render(request, 'dashboard.html')
@@ -52,18 +53,22 @@ def interface(request, user_identifier):
 
 def comments(request, user_identifier, uuid):
     if request.user.username == user_identifier and uuid == uuid:
-        user_comments = Comment_Reply.objects.filter(user=request.user, parent=None)
         link = Link.objects.get(user=request.user)
         uuid = link.uuid
+        user_comments = Comment_Reply.objects.filter(user=request.user, parent=None)
 
-        # data = request.get_json()  # Get the JSON data sent from the frontend
-        # paragraph_content = data.get('content', '')
-        
+        comments_with_replies = []
+        for comment in user_comments:
+            replies = Reply.objects.filter(user=request.user, comment_no=comment.sno)
+            comments_with_replies.append((comment, replies))
+
         return render(request, 'comments.html', {
-            'user_comments': user_comments,
+            'comments_with_replies': comments_with_replies,
             'user_identifier': user_identifier,
             'uuid': uuid,
         })
+
+
 
 def reply(request, user_identifier, uuid):
     if request.method == 'POST':
@@ -72,17 +77,20 @@ def reply(request, user_identifier, uuid):
             reply_content = request.POST.get('reply')
 
             if reply_content:
-                reply = Reply.objects.create(comment_no,reply_content)
-                reply.save()
-                user_reply = Reply.objects.filter(user=request.user)
+                reply = Reply.objects.create(
+                    user=request.user,
+                    comment_no=comment_no,
+                    reply_content=reply_content
+                )
+                return redirect('comments', user_identifier=user_identifier, uuid=uuid)
+            else:
+                return redirect('reply', user_identifier=user_identifier, uuid=uuid)
+    else:
+        return render(request, 'comments.html', {
+            'user_identifier': user_identifier,
+            'uuid': uuid,
+        })
 
-                return render(request, 'comments.html', {
-                   'user_reply': user_reply,
-                   'user_identifier': user_identifier,
-                   'uuid': uuid,
-               })
-
-         
          
 
 def success(request, user_identifier, uuid):

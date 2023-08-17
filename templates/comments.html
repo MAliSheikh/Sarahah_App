@@ -64,15 +64,18 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-5" style=" box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); ">
+    <div class="container mt-5" style="box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);">
         <div class="d-flex justify-content-center row">
-            {% for user_comment in user_comments %}
+            {% for comment, replies in comments_with_replies %}
             <div class="col-md-8">
                 <div class="d-flex flex-column comment-section">
                     <div class="bg-white p-2">
                         <div class="mt-2" style="display: flex;">
-                            <p id="comment_sno" style="font-size: 14px;">{{ user_comment.sno}} - </p>
-                            <p class="comment-text" style="font-size: 14px;">{{ user_comment.comment }}</p>
+                            <p id="comment_sno" style="font-size: 14px;">{{ comment.sno }} - </p>
+                            <p class="comment-text" style="font-size: 14px;  padding-right: 10px;">{{ comment.comment }}</p>
+                            <p class="comment-timestamp" style="font-size: 12px; color: gray;">
+                                {{ comment.timestamp|date:"F d, Y H:i A" }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -82,42 +85,53 @@
                         <!-- Likes and other options -->
                         <div class="like p-2 cursor">
                             <button class="btn btn-primary btn-sn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#replyBox{{ user_comment.sno }}" aria-expanded="false"
-                                aria-controls="replyBox{{ user_comment.sno }}">
+                                data-bs-target="#replyBox{{ comment.sno }}" aria-expanded="false"
+                                aria-controls="replyBox{{ comment.sno }}">
                                 Reply
                             </button>
-                            <div class="collapse" id="replyBox{{ user_comment.sno }}">
+                            <div class="collapse" id="replyBox{{ comment.sno }}">
                                 <div class="card card-body my-2">
-                                    <form method="post" >
+                                    <form action="{% url 'reply' user_identifier=user_identifier uuid=uuid %}"
+                                        method="post">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label for="comment">Post a reply</label>
                                             <input type="text" class="form-control" name="reply"
                                                 placeholder="Enter reply here">
-                                            <input type="hidden" name="comment_no" value="{{user_comment.sno}}">
+                                            <input type="hidden" name="comment_no" value="{{ comment.sno }}">
                                         </div>
-                                        <!-- <input type="hidden" name="postSno" value="{{post.sno}}"> -->
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-primary">Reset</button>
                                     </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <!-- Replies -->
                     <div class="ml-4">
-                        {% for reply in user_comment.reply_set.all %}
-                        <div class="bg-light p-2 mt-2">
-                            <p class="comment-text" style="font-size: 14px;">{{ reply.content }}</p>
+                        {% if replies %}
+                        <div class="bg-white p-2">
+                            <div class="mt-2" style="display: flex;">
+                                <ul class="replies" style="list-style: none;">
+                                    {% for reply in replies %}
+                                    <li class="bg-light p-2 mt-2" style="display:flex;">
+                                        <p class="comment-text" style="font-size: 14px; padding-right: 10px;">{{ reply.reply_content }}  </p>
+                                        <p class="comment-timestamp" style="font-size: 12px; color: gray;">
+                                            {{ reply.timestamp|date:"F d, Y H:i A" }}
+                                        </p>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% else %}
+                                <p>No replies for this comment.</p>
+                                {% endif %}
+                            </div>
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-
     </div>
 
     <footer class="center-block">
