@@ -1,0 +1,149 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'css/comment.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/application-rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toolkit-ltr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toolkit-rtl.min.css' %}">
+    <link rel="icon" src="_/img/favicon.html">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body style="background-image: url('/static/img/hero-bg.png'); background-size: cover; background-position: center;">
+    <div class="growl" id="app-growl"></div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top app-navbar" style="display: flex; margin-top: -50px; ">
+        <div class="container" style="display: flex;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-main">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#/" class="navbar-brand">
+                    {% load static %}
+                    <span><img style="padding-bottom:7px;" src="{% static 'img/Logo.png' %}" alt="My Image"><span
+                            class="hidden-sm hidden-xs hidden-xxs">Sarahah</span></span>
+                    <!--Remove the x in "xclass in the img above when the search bar is shown to removed "sarahah" and keep the logo only on mobile screens-->
+                </a>
+                <div class="col-xs-3">
+                </div>
+            </div>
+            <div class="navbar-collapse collapse col-sm-12" id="navbar-collapse-main">
+                <ul class="nav navbar-nav navbar-right"
+                    style="display: inline-block; margin-top:-50px; font-size: 14px;">
+
+                    {% if request.user.is_authenticated %}
+                    <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="/logout">Login</a></li>
+                    {% endif %}
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5" style=" box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); ">
+        <div class="d-flex justify-content-center row">
+            {% for user_comment in user_comments %}
+            <div class="col-md-8">
+                <div class="d-flex flex-column comment-section">
+                    <div class="bg-white p-2">
+                        <div class="mt-2" style="display: flex;">
+                            <p id="comment_sno" style="font-size: 14px;">{{ user_comment.sno}} - </p>
+                            <p class="comment-text" style="font-size: 14px;">{{ user_comment.comment }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white">
+                    <!-- Likes, reply button, etc. -->
+                    <div class="d-flex flex-row fs-12">
+                        <!-- Likes and other options -->
+                        <div class="like p-2 cursor">
+                            <button class="btn btn-primary btn-sn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#replyBox{{ user_comment.sno }}" aria-expanded="false"
+                                aria-controls="replyBox{{ user_comment.sno }}">
+                                Reply
+                            </button>
+                            <div class="collapse" id="replyBox{{ user_comment.sno }}">
+                                <div class="card card-body my-2">
+                                    <form method="post" >
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="comment">Post a reply</label>
+                                            <input type="text" class="form-control" name="reply"
+                                                placeholder="Enter reply here">
+                                            <input type="hidden" name="comment_no" value="{{user_comment.sno}}">
+                                        </div>
+                                        <!-- <input type="hidden" name="postSno" value="{{post.sno}}"> -->
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Replies -->
+                    <div class="ml-4">
+                        {% for reply in user_comment.reply_set.all %}
+                        <div class="bg-light p-2 mt-2">
+                            <p class="comment-text" style="font-size: 14px;">{{ reply.content }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <footer class="center-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                    <div class="copyright">
+                        Sarahah 2017 &copy;
+                        <span class="social"><a href="http://www.twitter.com/sarahah_com"
+                                class="icon icon-twitter"></a>&nbsp;<a href="http://www.facebook.com/sarahahcom"
+                                class="icon icon-facebook"></a>&nbsp;<a href="http://www.instagram.com/sarahah_com"
+                                class="icon icon-instagram"></a></span> -
+                        <a href="#">Privacy</a> -
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-2 col-md-4 col-lg-4">
+                    <div>
+                        <a class="spacer" href="#">English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

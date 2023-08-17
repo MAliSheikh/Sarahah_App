@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<title>Welcome to Sarah Snoymouus Messaging App</title>
+{% endblock %}
+
+{% block content %}
+
+<div>
+  <div class="welcome-page" >
+    <div class="left-content">
+      <h1>Welcome to Sarah Snoymouus Messaging App</h1>
+      <p>Are you ready to face frankness?</p>
+      <p>Get honest feedback from your coworkers and friends.</p>
+      <ul class="custom-list">
+        <li>At work</li>
+        <li>Strengthen areas for improvement</li>
+        <li>Enhance your areas of strength</li>
+        <li>With your friends</li>
+        <li>Improve your friendship</li>
+        <li>Let your friends be honest with you</li>
+      </ul>
+      <a href="/login_page/"><button>Login Here</button></a>
+    </div>
+    <div class="right-image"> </div>
+  </div>
+</div>
+{% endblock %}

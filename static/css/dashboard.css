@@ -1,0 +1,71 @@
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.welcome-page {
+  background-image: url('/static/img/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+}
+
+.left-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.left-content h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.left-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.left-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-top: 15px;
+  color: #444;
+}
+
+.left-content li {
+  margin-bottom: 10px;
+}
+
+.right-image {
+  flex: 1;
+  background-image: url('/static/img/hero-img.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 550px;
+}
+
+button {
+  font-family: "Arial", sans-serif;
+  padding: 12px 20px;
+  background-color: rgb(53, 196, 172);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+a {
+  color: rgb(53, 196, 172);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

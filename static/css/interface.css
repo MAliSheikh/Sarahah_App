@@ -1,0 +1,93 @@
+/* Reset default margin and padding */
+body,
+h1,
+h2,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+
+}
+
+
+.content {
+  background-image: url('/static/img/Abract01.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-color: #f1f1f1;
+  padding: 20px;
+  /* Add padding for spacing */
+}
+
+.profile {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+  height: 200%;
+  width: 40%;
+}
+
+.profile img {
+  max-width: 100px;
+}
+
+.action-button {
+  background-color: #333;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  /* Increase font size */
+  font-weight: bold;
+  /* Add bold font weight */
+  text-transform: uppercase;
+  /* Uppercase text */
+  letter-spacing: 1px;
+  /* Add letter spacing */
+}
+
+/* Add space between profile and button */
+.space-between {
+  margin-top: 40px;
+}
+
+button {
+  font-family: "Arial", sans-serif;
+  padding: 10px;
+  background-color: rgb(53, 196, 172);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  width: 100%;
+  /* Use full width for the button */
+}
+
+
+a {
+  color: rgb(53, 196, 172);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

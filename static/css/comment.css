@@ -1,0 +1,65 @@
+body {
+    background: #eee;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+/* Navbar container */
+.navbar {
+    background-color: rgb(53, 196, 172);
+    padding: 10px;
+    display: flex;
+  }
+  
+  /* Logo */
+  .navbar-brand img {
+    display: block;
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Navbar links */
+  .navbar-nav .nav-item {
+    margin-right: 10px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #666;
+  }
+
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #007bff
+}
+
+.cursor:hover {
+    color: blue
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.textarea {
+    resize: none
+}
+

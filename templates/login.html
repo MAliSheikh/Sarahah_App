@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+{% block head %}
+<title>Login and Registration Page</title>
+<link href="{% static 'bootstrap-5.3.1/dist/css/bootstrap.min.css' %}" rel="stylesheet"
+  integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="{% static 'bootstrap-5.3.1/dist/js/bootstrap.bundle.min.js' %}"
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="main">
+  <div class="containers">
+    <div class="form-containers">
+      <h2>Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        {% if messages %}
+        {{ messages.tags }}
+        {% for message in messages %}
+        <div class="alert alert-info" role="alert" style="padding-left:-500px; text-align: left;">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <input name="username" type="text" placeholder="Username" required>
+        <input name="password" type="password" placeholder="Password" required>
+        <p>Click Here to <a href="/register/">Registration Here</a></p>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

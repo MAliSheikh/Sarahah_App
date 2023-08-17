@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="ltr" class="Messages Send adaman134">
+
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Sarahah - Adam Anikiej</title>
+    <link rel="apple-touch-icon" href="{% static 'img/icon.png' %}">
+
+    <link rel="stylesheet" href="{% static 'css/application-rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toolkit-ltr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toolkit-rtl.min.css' %}">
+    <link rel="icon" src="_/img/favicon.html">
+
+    {% block head %}
+
+    {% endblock %}
+
+</head>
+
+<body class="with-top-navbar" style="font-family: Arial, sans-serif;">
+
+    <div class="growl" id="app-growl"></div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-main">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#/" class="navbar-brand">
+                    {% load static %}
+                    <span><img style="padding-bottom:7px;" src="{% static 'img/Logo.png' %}" alt="My Image"><span
+                            class="hidden-sm hidden-xs hidden-xxs">Sarahah</span></span>
+                    <!--Remove the x in "xclass in the img above when the search bar is shown to removed "sarahah" and keep the logo only on mobile screens-->
+                </a>
+                <div class="col-xs-3">
+                </div>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-collapse-main">
+                <ul class="nav navbar-nav navbar-right">
+
+                    {% if request.user.is_authenticated %}
+                    <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="/logout">Login</a></li>
+                    {% endif %}
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer class="center-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                    <div class="copyright">
+                        Sarahah 2017 &copy;
+                        <span class="social"><a href="http://www.twitter.com/sarahah_com"
+                                class="icon icon-twitter"></a>&nbsp;<a href="http://www.facebook.com/sarahahcom"
+                                class="icon icon-facebook"></a>&nbsp;<a href="http://www.instagram.com/sarahah_com"
+                                class="icon icon-instagram"></a></span> -
+                        <a href="#">Privacy</a> -
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-2 col-md-4 col-lg-4">
+                    <div>
+                        <a class="spacer" href="#">English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

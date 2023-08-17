@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Sent</title>
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+{% endblock %}
+{% block content %}
+
+<div class="center-message">
+    <img style="margin-bottom:100px; " data-action="zoom" class="panel-profile-img" src="{% static 'img/avatar.png' %}"
+        alt="My Image">
+    <div class="success-icon">
+
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="success-text">
+        Comment sent successfully!
+    </div>
+    
+    <a href="{% url 'comments' user_identifier=user_identifier uuid=uuid %}">
+        <button type="button">Click here to view your Comment</button>
+    </a>
+    
+</div>
+
+{% endblock %}

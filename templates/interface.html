@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/interface.css' %}">
+
+<title>User Interface</title>
+</head>
+{% endblock %}
+
+
+{% block content %}
+
+<body>
+
+    <main class="content" style="background-image: url('/static/img/Abract01.png');">
+        <div class="profile" style="height: 250px;">
+            <img style="background-color: aquamarine; color: aqua;" data-action="zoom" class="panel-profile-img" src="{% static 'img/avatar.png' %}" alt="My Image">
+            <h2>{{ fullname }}</h2>
+            <p>Share this link with you friends</p>
+
+            <p>https:// <a href="{{ generated_link }}">{{ generated_link }}</a></p>
+        </div>
+        <a href="{{ generated_link }}"><button> Click here to see your comments </button></a>
+    </main>
+    {% endblock %}

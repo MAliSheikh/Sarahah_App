@@ -1,0 +1,114 @@
+body {
+  background-image: url('/static/img/5.avif');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Use min-height instead of height for responsiveness */
+  }
+
+
+.containers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; /* Increase the maximum width for larger forms on mobile */
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+
+h2 {
+  font-family: "Arial", sans-serif;
+  margin: 0; /* Remove margin-top and margin-bottom */
+  padding-top: 20px; /* Add some top padding for spacing */
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 2px;
+  background-color: rgb(53, 196, 172);
+  visibility: hidden;
+  transition: visibility 0s, width 0.3s;
+}
+
+h2:hover::after {
+  visibility: visible;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Use full width for the form */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  font-family: "Arial", sans-serif;
+  margin-bottom: 10px;
+  padding: 10px;
+  direction: ltr;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+  width: 100%; /* Use full width for the input fields */
+}
+
+button {
+  font-family: "Arial", sans-serif;
+  padding: 10px;
+  background-color: rgb(53, 196, 172);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  width: 100%; /* Use full width for the button */
+}
+
+p {
+  font-size: 14px;
+  font-family: "Arial", sans-serif;
+  direction: ltr;
+  text-align: center;
+  margin-top: 10px;
+}
+
+a {
+  color: rgb(53, 196, 172);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  .containers {
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0;
+  }  
+}
+
+  
