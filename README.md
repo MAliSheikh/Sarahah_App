@@ -1,77 +1,46 @@
+# Saraha Anonymous Message App
 
-# My_Django_App
-pip install django
-django-admin startproject projectname
-cd projectname
+Welcome to the Saraha Anonymous Message App! This app allows users to send and receive anonymous messages, fostering open communication. Below is an overview of the main pages in the app:
 
- Create a new Django app
-python manage.py startapp appname
+Here are some screenshots of the app's pages:
+## Dashboard
 
- Configure the database
-By default, Django uses SQLite as the database backend. If you want to use a different database, 
-update the database settings in the settings.py file located in your project directory. 
-Django supports various databases, such as PostgreSQL, MySQL, and Oracle.
+1. Dashboard
+   ![Dashboard](static/img/Screenshot%20(1112).png)
 
 
- Define your models
-Models in Django represent the structure of your data. Open the models.py file within your app directory 
-and define your models using Python classes.Each attribute of a model represents a database field.
+## Login  
+2. Login 
+   ![Login and Sign Up](static/img/Screenshot%20(1114).png)
 
-: Create database tables
-1ST: python manage.py makemigrations
-After complete table query : python manage.py migrate
+## Sign Up
+1. Sign Up
+      ![Login and Sign Up](static/img/Screenshot%20(1115).png)
 
-: Run the development server
-python manage.py runserver
+## Interface
 
-
-
---Sari logical cheeze views me hotii ha
---- routing urls me hotii ha
-
-add this in url file
-from django.conf.urls.static import static
-
-FOR CSS
-
-For css link static/css
-In html we write 
-{%  load static %}
-<Doctype HTML>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-In settings.py
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
-add in settins in templates 
-'DIRS': [BASE_DIR / 'templates'],
+3. Interface    
+   ![Interface](static/img/Screenshot%20(1116).png)
 
 
-FOR Image
-HTML img
- {% load static %}
-    <img src="{% static 'img/1.jpeg' %}" alt="My Image">
+## Message Index
+4. Message Index
+   ![Message Index](static/img/Screenshot%20(1117).png)
 
-CSS image
-background-image: url("../img/1.jpg");
+## Success Page
 
+5. Success Page
+   ![Success Page](static/img/Screenshot%20(1118).png)
 
+## Comments Page
 
+6. Comments Page
+   ![Comments Page](static/img/Screenshot%20(1119).png)
 
+## Contributing
 
+We welcome contributions from the community! If you encounter any issues or have suggestions for improvements, feel free to submit a pull request or open an issue on our GitHub repository.
 
-make database 
+## License
 
-python manage.py makemigrations
-
-python manage.py migrate 
-
-for the datatbase add in settings project name e.g(my_project) in instaled_apps
-
-from my_project.models import * in view file
-
-
-
-
+This project is licensed under the [MIT License](LICENSE).
