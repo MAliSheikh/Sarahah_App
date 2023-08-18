@@ -19,8 +19,6 @@ from my_app.views import *
 from django.conf.urls.static import static
 from django.urls import path
 from my_app import views
-from django.urls import path, include
-
 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
@@ -33,6 +31,5 @@ urlpatterns = [
     path('logout/', views.logout_page, name='logout'),
     path('reply/<str:user_identifier>/<str:uuid>/', views.reply, name='reply'),  # Missing comma was added here
     path('success/<str:user_identifier>/<str:uuid>/', views.success, name='success'),
-    path('', include('my_app.urls')),
 ]
     
