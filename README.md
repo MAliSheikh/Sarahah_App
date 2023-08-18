@@ -37,6 +37,9 @@ Here are some screenshots of the app's pages:
 6. Comments Page
    ![Comments Page](static/img/Screenshot%20(1119).png)
 
+## Reply
+![Comments Page](static/img/Screenshot%20(1120).png)
+
 ## Contributing
 
 We welcome contributions from the community! If you encounter any issues or have suggestions for improvements, feel free to submit a pull request or open an issue on our GitHub repository.
