@@ -11,11 +11,11 @@ Here are some screenshots of the app's pages:
 
 ## Login  
 2. Login 
-   ![Login and Sign Up](static/img/Screenshot%20(1114).png)
+   ![Login and Sign Up](static/img/Screenshot%20(1115).png)
 
 ## Sign Up
 1. Sign Up
-      ![Login and Sign Up](static/img/Screenshot%20(1115).png)
+      ![Login and Sign Up](static/img/Screenshot%20(1114).png)
 
 ## Interface
 
